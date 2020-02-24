@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  amtdirectcalculator.api:
+    image: ${DOCKER_REGISTRY-}amtdirectcalculator
+    build:
+      context: .
+      dockerfile: AmtDirectCalculator.Api/Dockerfile

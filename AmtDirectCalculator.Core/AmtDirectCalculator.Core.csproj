@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Entities\FASB\CalPeriod.cs" />
+    <Compile Remove="Entities\JournalEntry.cs" />
+    <Compile Remove="Entities\FASBClientSelections.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmtDirectCalculator.SharedKernel\AmtDirectCalculator.SharedKernel.csproj" />
+  </ItemGroup>
+</Project>

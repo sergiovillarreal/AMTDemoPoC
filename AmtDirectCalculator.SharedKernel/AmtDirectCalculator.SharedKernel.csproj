@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Models\" />
+    <Folder Include="Interfaces\Services\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Interfaces\IGetDataAccess.cs" />
+    <Compile Remove="Interfaces\IExecuteJournalEntryValidation.cs" />
+    <Compile Remove="Interfaces\IDataAccessService.cs" />
+    <Compile Remove="Interfaces\Models\IJournalEntry.cs" />
+    <Compile Remove="Interfaces\Models\IFASBClientSelections.cs" />
+  </ItemGroup>
+</Project>

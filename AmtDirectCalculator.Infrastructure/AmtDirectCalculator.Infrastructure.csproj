@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="ApiConnectorService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmtDirectCalculator.Core\AmtDirectCalculator.Core.csproj" />
+    <ProjectReference Include="..\AmtDirectCalculator.SharedKernel\AmtDirectCalculator.SharedKernel.csproj" />
+  </ItemGroup>
+</Project>
