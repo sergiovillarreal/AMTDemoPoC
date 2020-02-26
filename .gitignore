@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+# Ignore htm and html
+*.html
+*.htm
+
+#ignore cobertura.xml
+coverage.cobertura.xml
