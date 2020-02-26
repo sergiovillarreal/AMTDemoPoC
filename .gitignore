@@ -354,3 +354,6 @@ MigrationBackup/
 
 #ignore cobertura.xml
 coverage.cobertura.xml
+
+#ignore osx files
+.DS_Store
