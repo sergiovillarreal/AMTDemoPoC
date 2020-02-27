@@ -51,7 +51,7 @@ namespace AmtDirectCalculator.Api.Controllers
             }
 
             /// <summary>
-            /// Calculate Third Party GRV STD 13 Test comment
+            /// Calculate Third Party GRV STD 13
             /// </summary>
             /// <remarks>
             /// Detail Description here!
