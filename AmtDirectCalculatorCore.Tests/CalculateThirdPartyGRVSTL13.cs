@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace AmtDirectCalculatorCore.Tests
 {
-    public class CalculateThirdPartyGRVSTL13
+    public class CalculateThirdPartyGrvStl13
     {
         private IBaseCalculatorService _baseCalculatorService;
         private IThirdPartyGrv _thirdPartyGrv;
@@ -36,7 +36,7 @@ namespace AmtDirectCalculatorCore.Tests
             _thirdPartyGrvExpected.UnearnedIntThirdPartyGrvStl = 184.89M;
             _thirdPartyGrvExpected.NetInvestmentInLeaseStl = 983.23M;
 
-            _thirdPartyGrvResult = _baseCalculatorService.CalculateThirdPartyGRVSTL13(_thirdPartyGrv);
+            _thirdPartyGrvResult = _baseCalculatorService.CalculateThirdPartyGrvStl13(_thirdPartyGrv);
             Assert.That(_thirdPartyGrvResult.ThirdPartyGrvStl, Is.EqualTo(_thirdPartyGrvExpected.ThirdPartyGrvStl));
             Assert.That(_thirdPartyGrvResult.NetThirdPartyGrvStl, Is.EqualTo(_thirdPartyGrvExpected.NetThirdPartyGrvStl));
             Assert.That(_thirdPartyGrvResult.UnearnedIntThirdPartyGrvStl, Is.EqualTo(_thirdPartyGrvExpected.UnearnedIntThirdPartyGrvStl));
@@ -48,7 +48,7 @@ namespace AmtDirectCalculatorCore.Tests
         public void PassignNullThirdPartyGrvObject()
         {
             _thirdPartyGrv = null;
-            var ex = Assert.Throws<NullReferenceException>(() => _baseCalculatorService.CalculateThirdPartyGRVSTL13(_thirdPartyGrv));
+            var ex = Assert.Throws<NullReferenceException>(() => _baseCalculatorService.CalculateThirdPartyGrvStl13(_thirdPartyGrv));
             Assert.That(ex.Message, Is.EqualTo($"thirdPartyGrv is null"));
         }
     }
