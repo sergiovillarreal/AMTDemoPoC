@@ -1,4 +1,5 @@
-﻿using AmtDirectCalculator.Core.Models;
+﻿using System;
+using AmtDirectCalculator.Core.Models;
 using AmtDirectCalculator.Core.Services;
 using AmtDirectCalculator.SharedKernel.Interfaces.Models;
 using AmtDirectCalculator.SharedKernel.Interfaces.Services;
@@ -41,6 +42,14 @@ namespace AmtDirectCalculatorCore.Tests
             Assert.That(_thirdPartyGrvResult.UnearnedIntThirdPartyGrvStl, Is.EqualTo(_thirdPartyGrvExpected.UnearnedIntThirdPartyGrvStl));
             Assert.That(_thirdPartyGrvResult.NetInvestmentInLeaseStl, Is.EqualTo(_thirdPartyGrvExpected.NetInvestmentInLeaseStl));
 
+        }
+
+        [Test]
+        public void PassignNullThirdPartyGrvObject()
+        {
+            _thirdPartyGrv = null;
+            var ex = Assert.Throws<NullReferenceException>(() => _baseCalculatorService.CalculateThirdPartyGRVSTL13(_thirdPartyGrv));
+            Assert.That(ex.Message, Is.EqualTo($"thirdPartyGrv is null"));
         }
     }
 }
