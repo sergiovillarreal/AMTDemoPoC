@@ -9,7 +9,7 @@ namespace AmtDirectCalculator.Core.Services
 {
     public class BaseCalculatorService : IBaseCalculatorService
     {
-        public BaseCalculatorService ()
+        public BaseCalculatorService()
         {
         }
 
@@ -48,25 +48,21 @@ namespace AmtDirectCalculator.Core.Services
 
         public IThirdPartyGrvResult CalculateThirdPartyGRVSTL13(IThirdPartyGrv thirdPartyGrv)
         {
+            if (thirdPartyGrv == null) { throw new NullReferenceException($"thirdPartyGrv is null"); }
+
             IThirdPartyGrvResult thirdPartyGrvResult = new ThirdPartyGrvResult();
-            try
-            {
-                decimal period = 1300;
-                int precision = 2;
-                var test = (thirdPartyGrv.RateImplicit / period) * thirdPartyGrv.PVofGuaranteedRV;
-                var test2 = test + thirdPartyGrv.CuUnearnedIntThirdPartyGrvStl;
 
-                thirdPartyGrvResult.ThirdPartyGrvStl = MathHelper.SetPrecision(thirdPartyGrv.PVofGuaranteedRV, precision);
-                thirdPartyGrvResult.NetThirdPartyGrvStl = MathHelper.SetPrecision((thirdPartyGrv.PVofGuaranteedRV + test), precision);
-                thirdPartyGrvResult.UnearnedIntThirdPartyGrvStl = MathHelper.SetPrecision(test2, precision);
-                thirdPartyGrvResult.NetInvestmentInLeaseStl = MathHelper.SetPrecision(thirdPartyGrv.NetInvLeaseSTL, precision);
+            decimal period = 1300;
+            int precision = 2;
+            var test = (thirdPartyGrv.RateImplicit / period) * thirdPartyGrv.PVofGuaranteedRV;
+            var test2 = test + thirdPartyGrv.CuUnearnedIntThirdPartyGrvStl;
 
-                return thirdPartyGrvResult;
-            }
-            catch (NullReferenceException)
-            {
-                throw new NullReferenceException();
-            }
+            thirdPartyGrvResult.ThirdPartyGrvStl = MathHelper.SetPrecision(thirdPartyGrv.PVofGuaranteedRV, precision);
+            thirdPartyGrvResult.NetThirdPartyGrvStl = MathHelper.SetPrecision((thirdPartyGrv.PVofGuaranteedRV + test), precision);
+            thirdPartyGrvResult.UnearnedIntThirdPartyGrvStl = MathHelper.SetPrecision(test2, precision);
+            thirdPartyGrvResult.NetInvestmentInLeaseStl = MathHelper.SetPrecision(thirdPartyGrv.NetInvLeaseSTL, precision);
+
+            return thirdPartyGrvResult;
         }
     }
 }
