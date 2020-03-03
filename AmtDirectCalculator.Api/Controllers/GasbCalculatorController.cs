@@ -85,5 +85,36 @@ namespace AmtDirectCalculator.Api.Controllers
                 return BadRequest(errorMessage);
             }
         }
+
+
+        /// <summary>
+        /// Sum two numbers
+        /// </summary>
+        /// <remarks>
+        /// get the sum result of two numbers.
+        /// </remarks>
+        /// <param name="number1">integer 1</param>
+        /// <param name="number2">integer 2</param>
+        /// <returns>sum of the two integers</returns>
+        [HttpPost]
+        [Route("SumTwoNumbers")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(AMTErrorMessage), StatusCodes.Status400BadRequest)]
+        public IActionResult SumTwoNumbers(int number1, int number2)
+        {
+            try
+            {
+                return Ok(_baseCalculatorService.SumTwoNumbers(number1, number2));
+            }
+            catch (Exception ex)
+            {
+                AMTErrorMessage errorMessage = new AMTErrorMessage
+                {
+                    Message = ex.Message
+                };
+                return BadRequest(errorMessage);
+            }
+        }
     }
 }
