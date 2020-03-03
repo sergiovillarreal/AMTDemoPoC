@@ -9,74 +9,81 @@ using Microsoft.Extensions.Configuration;
 
 namespace AmtDirectCalculator.Api.Controllers
 {
-        [ApiController]
-        [Route("api/[controller]")]
-        public class GasbCalculatorController : BaseApiController
+
+    /// <summary>
+    /// Gasb Calculator Controller
+    /// </summary>
+    /// <remarks>
+    /// Gasb calculator api end point
+    /// </remarks>
+    [ApiController]
+    [Route("api/[controller]")]
+    public class GasbCalculatorController : BaseApiController
+    {
+        private IBaseCalculatorService _baseCalculatorService;
+
+        public GasbCalculatorController(IConfiguration configuration,
+            IBaseCalculatorService baseCalculatorService) : base(configuration)
         {
-            private IBaseCalculatorService _baseCalculatorService;
+            _baseCalculatorService = baseCalculatorService;
+        }
 
-            public GasbCalculatorController(IConfiguration configuration,
-                IBaseCalculatorService baseCalculatorService) : base(configuration)
+        /// <summary>
+        /// Derive Calendar Period
+        /// </summary>
+        /// <remarks>
+        /// Remove "0" character from month in calendar period string
+        /// </remarks>
+        /// <param name="calendarPeriod">string calendar period to derive example: 09/2020</param>
+        /// <returns>string formated</returns>
+        [HttpPost]
+        [Route("DeriveCalendarPeriod")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(CalendarPeriod), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(AMTErrorMessage), StatusCodes.Status400BadRequest)]
+        public IActionResult DeriveCalendarPeriod([FromBody] CalendarPeriod calendarPeriod)
+        {
+            try
             {
-                _baseCalculatorService = baseCalculatorService;
+                return Ok(_baseCalculatorService.DeriveCalendarPeriod(calendarPeriod));
             }
-
-            /// <summary>
-            /// Derive Calendar Period
-            /// </summary>
-            /// <remarks>
-            /// Remove "0" character from month in calendar period string
-            /// </remarks>
-            /// <param name="calendarPeriod">string calendar period to derive example: 09/2020</param>
-            /// <returns>string formated</returns>
-            [HttpPost]
-            [Route("DeriveCalendarPeriod")]
-            [Produces("application/json")]
-            [ProducesResponseType(typeof(CalendarPeriod), (int)HttpStatusCode.OK)]
-            [ProducesResponseType(typeof(AMTErrorMessage), StatusCodes.Status400BadRequest)]
-            public IActionResult DeriveCalendarPeriod([FromBody] CalendarPeriod calendarPeriod)
+            catch (Exception ex)
             {
-                try
+                AMTErrorMessage errorMessage = new AMTErrorMessage
                 {
-                    return Ok(_baseCalculatorService.DeriveCalendarPeriod(calendarPeriod));
-                }
-                catch (Exception ex)
-                {
-                    AMTErrorMessage errorMessage = new AMTErrorMessage
-                    {
-                        Message = ex.Message
-                    };
-                    return BadRequest(errorMessage);
-                }
-            }
-
-            /// <summary>
-            /// Calculate Third Party GRV STD 13
-            /// </summary>
-            /// <remarks>
-            /// Detail Description here!
-            /// </remarks>
-            /// <param name="thirdPartyGrv">Third Party object values to calculate</param>
-            /// <returns>ThirdPartyGrvResult object</returns>
-            [HttpPost]
-            [Route("CalculateThirdPartyGRVSTL13")]
-            [Produces("application/json")]
-            [ProducesResponseType(typeof(ThirdPartyGrvResult), (int)HttpStatusCode.OK)]
-            [ProducesResponseType(typeof(AMTErrorMessage), StatusCodes.Status400BadRequest)]
-            public IActionResult CalculateThirdPartyGRVSTL13([FromBody] ThirdPartyGrv thirdPartyGrv)
-            {
-                try
-                {
-                    return Ok(_baseCalculatorService.CalculateThirdPartyGRVSTL13(thirdPartyGrv));
-                }
-                catch (Exception ex)
-                {
-                    AMTErrorMessage errorMessage = new AMTErrorMessage
-                    {
-                        Message = ex.Message
-                    };
-                    return BadRequest(errorMessage);
-                }
+                    Message = ex.Message
+                };
+                return BadRequest(errorMessage);
             }
         }
- }
+
+        /// <summary>
+        /// Calculate Third Party GRV STD 13
+        /// </summary>
+        /// <remarks>
+        /// Detail Description here!
+        /// </remarks>
+        /// <param name="thirdPartyGrv">Third Party object values to calculate</param>
+        /// <returns>ThirdPartyGrvResult object</returns>
+        [HttpPost]
+        [Route("CalculateThirdPartyGrvStl13")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(ThirdPartyGrvResult), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(AMTErrorMessage), StatusCodes.Status400BadRequest)]
+        public IActionResult CalculateThirdPartyGrvStl13([FromBody] ThirdPartyGrv thirdPartyGrv)
+        {
+            try
+            {
+                return Ok(_baseCalculatorService.CalculateThirdPartyGrvStl13(thirdPartyGrv));
+            }
+            catch (Exception ex)
+            {
+                AMTErrorMessage errorMessage = new AMTErrorMessage
+                {
+                    Message = ex.Message
+                };
+                return BadRequest(errorMessage);
+            }
+        }
+    }
+}

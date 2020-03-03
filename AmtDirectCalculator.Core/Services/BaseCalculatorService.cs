@@ -46,7 +46,7 @@ namespace AmtDirectCalculator.Core.Services
             }
         }
 
-        public IThirdPartyGrvResult CalculateThirdPartyGRVSTL13(IThirdPartyGrv thirdPartyGrv)
+        public IThirdPartyGrvResult CalculateThirdPartyGrvStl13(IThirdPartyGrv thirdPartyGrv)
         {
             if (thirdPartyGrv == null) { throw new NullReferenceException($"thirdPartyGrv is null"); }
 
