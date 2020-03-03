@@ -6,6 +6,5 @@ namespace AmtDirectCalculator.SharedKernel.Interfaces.Services
     {
         ICalendarPeriod DeriveCalendarPeriod(ICalendarPeriod period);
         IThirdPartyGrvResult CalculateThirdPartyGrvStl13(IThirdPartyGrv thirdPartyGrv);
-        int SumTwoNumbers(int number1,  int number2);
     }
 }
