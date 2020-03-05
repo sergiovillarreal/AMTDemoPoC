@@ -64,5 +64,11 @@ namespace AmtDirectCalculator.Core.Services
 
             return thirdPartyGrvResult;
         }
+
+        public int SumTwoNumbers(int number1, int number2)
+        {
+            return number1 + number2;
+        }
+
     }
 }
