@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
+    <Compile Remove="SumTwoNumbers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AmtDirectCalculator.Infrastructure\AmtDirectCalculator.Infrastructure.csproj" />
